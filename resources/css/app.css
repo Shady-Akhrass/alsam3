@@ -1,0 +1,680 @@
+@import 'tailwindcss';
+@import './skeleton.css';
+
+/* Local Cairo Font Faces */
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('/fonts/Cairo-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+@source '../**/*.tsx';
+@source '../**/*.ts';
+
+@theme {
+    --color-brand-maroon: #3C0028;
+    --color-brand-magenta: #B40078;
+    --color-brand-magenta-light: #D4009A;
+    --color-brand-green: #64B43C;
+    --color-brand-rose: #F9E6F3;
+}
+
+/* ==========================================================================
+   Base & Font Enforcement
+   ========================================================================== */
+:root {
+    color-scheme: dark;
+}
+
+body {
+    background: linear-gradient(210deg, #eff5ff 0%, #fdfdfd 40%, #f8fbff 100%);
+    color: #0f172a;
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important;
+}
+
+/* ==========================================================================
+   Luxury Login Components (Pure CSS)
+   ========================================================================== */
+
+/* ── Container & Typography ── */
+.lux-container {
+    font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important;
+    direction: rtl;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 16% 24%, rgba(180, 60, 150, 0.15), transparent 35%),
+        radial-gradient(circle at 84% 76%, rgba(44, 140, 255, 0.14), transparent 36%),
+        linear-gradient(210deg, rgba(240, 247, 255, 1), rgba(253, 254, 255, 1));
+    color: #0f172a;
+}
+
+
+/* ── Cinematic Background ── */
+.lux-bg-elements {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.lux-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(140px);
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+.lux-orb-1 {
+    background: rgba(124, 58, 237, 0.28);
+    width: 520px;
+    height: 520px;
+    top: -180px;
+    right: -120px;
+    opacity: 0.36;
+}
+
+.lux-orb-2 {
+    background: rgba(59, 130, 246, 0.28);
+    width: 620px;
+    height: 620px;
+    bottom: -220px;
+    left: -180px;
+    opacity: 0.4;
+    animation-delay: -4.4s;
+}
+
+.lux-noise {
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    mix-blend-mode: overlay;
+}
+
+/* ── Glassmorphism Card ── */
+.lux-card-wrapper {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 600px;
+    padding: 0 1.5rem;
+    animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.lux-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(148, 163, 184, 0.24);
+    border-radius: 28px;
+    padding: 3rem 2.5rem;
+    box-shadow:
+        0 24px 44px rgba(15, 23, 42, 0.14),
+        inset 0 1px 0 rgba(255, 255, 255, 0.62);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.lux-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 30px 48px rgba(15, 23, 42, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.64);
+}
+
+
+/* ── Branding & Headers ── */
+.lux-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.lux-logo-box {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.lux-logo {
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 15px rgba(180, 0, 120, 0.4));
+}
+
+.lux-title {
+    font-size: 1.85rem;
+    font-weight: 800;
+    margin: 0 0 0.45rem 0;
+    color: #111827;
+    letter-spacing: -0.015em;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.lux-subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #4b5563;
+    margin: 0;
+}
+
+.lux-subtitle+.lux-subtitle {
+    margin-top: 0.35rem;
+}
+
+/* ── Form Elements ── */
+.lux-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
+.lux-input-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.lux-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #374151;
+    margin-inline-start: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.lux-label::after {
+    content: '';
+    width: 4px;
+    height: 4px;
+    background: var(--color-brand-magenta);
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.lux-label-indicator {
+    color: var(--color-brand-magenta);
+    font-size: 0.8rem;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.lux-input-wrapper.error {
+    border-color: #dc2626;
+    background: rgba(220, 38, 38, 0.05);
+}
+
+.lux-input-wrapper.error .lux-icon {
+    color: #dc2626;
+}
+
+.lux-input-clear {
+    position: absolute;
+    inset-inline-end: 3rem;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lux-input-clear:hover {
+    color: #dc2626;
+    background: rgba(220, 38, 38, 0.1);
+}
+
+.lux-checkbox-text {
+    position: relative;
+    top: 1px;
+}
+
+.lux-forgot-link {
+    color: var(--color-brand-magenta);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.lux-forgot-link:hover {
+    color: var(--color-brand-magenta-light);
+    background: rgba(180, 0, 120, 0.05);
+    transform: translateY(-1px);
+}
+
+.lux-forgot-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(180, 0, 120, 0.2);
+}
+
+.lux-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(148, 163, 184, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+.lux-input-wrapper:hover {
+    border-color: rgba(180, 0, 120, 0.3);
+    background: rgba(255, 255, 255, 0.95);
+}
+
+.lux-input-wrapper:focus-within {
+    border-color: var(--color-brand-magenta);
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 0 4px rgba(180, 0, 120, 0.1);
+}
+
+.lux-icon {
+    position: absolute;
+    inset-inline-start: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #9ca3af;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.lux-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: #1f2937;
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 1.125rem 1.25rem;
+    padding-inline-start: 3.25rem;
+    border-radius: 14px;
+    outline: none;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.lux-input::placeholder {
+    color: #9ca3af;
+    font-weight: 400;
+}
+
+.lux-input:focus {
+    color: #111827;
+}
+
+.lux-input-wrapper:focus-within .lux-icon {
+    color: var(--color-brand-magenta);
+    transform: scale(1.1);
+}
+
+.lux-btn-icon {
+    position: absolute;
+    inset-inline-end: 1rem;
+    background: transparent;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    z-index: 3;
+}
+
+.lux-btn-icon:hover {
+    color: var(--color-brand-magenta);
+    background: rgba(180, 0, 120, 0.1);
+    transform: scale(1.05);
+}
+
+.lux-btn-icon:active {
+    transform: scale(0.95);
+}
+
+/* ── Validation & Status ── */
+.lux-error {
+    color: #dc2626;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-top: 0.5rem;
+    margin-inline-start: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.75rem;
+    background: rgba(220, 38, 38, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    animation: shake 0.5s ease-in-out;
+}
+
+.lux-status {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(5, 150, 105, 0.1));
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: #059669;
+    padding: 1rem 1.25rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.1);
+}
+
+/* ── Options (Checkbox) ── */
+.lux-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem 0;
+}
+
+.lux-checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #4b5563;
+    user-select: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.lux-checkbox-label:hover {
+    background: rgba(180, 0, 120, 0.05);
+    color: var(--color-brand-magenta);
+}
+
+.lux-checkbox {
+    appearance: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    border: 2px solid #d1d5db;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.lux-checkbox:hover {
+    border-color: var(--color-brand-magenta);
+    transform: scale(1.05);
+}
+
+.lux-checkbox:checked {
+    background: linear-gradient(135deg, var(--color-brand-magenta), var(--color-brand-magenta-light));
+    border-color: var(--color-brand-magenta);
+    box-shadow: 0 4px 12px rgba(180, 0, 120, 0.3);
+    transform: scale(1.05);
+}
+
+.lux-checkbox:checked::after {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    animation: checkmark 0.3s ease-in-out;
+}
+
+/* ── Primary Button ── */
+.lux-button {
+    background: linear-gradient(135deg, var(--color-brand-magenta) 0%, var(--color-brand-magenta-light) 100%);
+    color: #fff;
+    border: none;
+    padding: 1.125rem 1.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+    border-radius: 16px;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 24px rgba(180, 0, 120, 0.3);
+    position: relative;
+    overflow: hidden;
+    margin-top: 1rem;
+    min-height: 52px;
+}
+
+.lux-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+}
+
+.lux-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(180, 0, 120, 0.4);
+    filter: brightness(1.05);
+}
+
+.lux-button:hover:not(:disabled)::before {
+    left: 100%;
+}
+
+.lux-button:active:not(:disabled) {
+    transform: translateY(0);
+    box-shadow: 0 4px 16px rgba(180, 0, 120, 0.3);
+}
+
+.lux-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(0.3);
+    transform: none;
+    box-shadow: 0 4px 12px rgba(180, 0, 120, 0.2);
+}
+
+.lux-spinner {
+    width: 1.2rem;
+    height: 1.2rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ── Footer ── */
+.lux-footer {
+    margin-top: 2.5rem;
+    text-align: center;
+}
+
+.lux-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(148, 163, 184, 0.3), transparent);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.lux-divider::after {
+    content: '🔒';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.94);
+    padding: 0 1rem;
+    font-size: 0.8rem;
+}
+
+.lux-footer-text {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #6b7280;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: rgba(16, 185, 129, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    transition: all 0.3s ease;
+}
+
+.lux-footer-text:hover {
+    background: rgba(16, 185, 129, 0.1);
+    transform: translateY(-1px);
+}
+
+/* ── Animations ── */
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        transform: translateY(-30px) scale(1.05);
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes checkmark {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) rotate(45deg) scale(1);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
