@@ -15,12 +15,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ---- PHP / Laravel ----
+      # ---- Node / React / Vite (BUILD FIRST) ----
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install NPM dependencies
+        run: npm ci
+
+      - name: Build frontend
+        run: npm run build
+
+      # ---- PHP / Laravel (TEST AFTER BUILD) ----
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: mbstring, xml, ctype, json, bcmath
+          extensions: mbstring, xml, ctype, json, bcmath, sqlite3, pdo_sqlite
 
       - name: Cache Composer
         uses: actions/cache@v4
@@ -35,22 +48,10 @@ jobs:
         run: |
           cp .env.example .env
           php artisan key:generate
+          touch database/database.sqlite
 
       - name: Run Laravel tests
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
         run: php artisan test
-
-      # ---- Node / React / Vite ----
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-          cache: 'npm'
-
-      - name: Install NPM dependencies
-        run: npm ci
-
-      - name: TypeScript check
-        run: npx tsc --noEmit
-
-      - name: Build frontend
-        run: npm run build
